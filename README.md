@@ -216,18 +216,6 @@ header('location: index.php');
 | Update | `ubah.php` | Mengubah stok `TV Samsung` dari 20 menjadi 15 | Berhasil, stok berubah menjadi 15 |
 | Delete | `hapus.php` | Menghapus `TV Samsung` | Berhasil, data hilang dari tabel |
 
-## Catatan Perbaikan terhadap Kode Modul
-
-Beberapa bagian pada kode di modul menyebabkan program tidak berjalan benar, sehingga diperbaiki:
-
-- `index.php`: urutan kolom Harga Jual dan Harga Beli disamakan antara header dan isi tabel. Kolom Aksi diisi tautan Ubah/Hapus (di modul berisi `id_barang`). Ditambahkan tautan Tambah Barang.
-- `tambah.php` dan `ubah.php`: yang disimpan di database hanya nama file gambar, karena `index.php` sudah menambahkan awalan `gambar/`. Jika tidak, path menjadi `gambar/gambar/...` dan gambar tidak tampil.
-- `ubah.php`: typo `multipart/formdata` diperbaiki menjadi `multipart/form-data` (jika tidak, upload gambar gagal). Fungsi `is_select()` kini membandingkan dengan nilai yang benar untuk tiap pilihan kategori.
-- Query memakai prepared statement dan konversi `(int)` pada id untuk mencegah SQL injection.
-- Kolom `nama` memakai `varchar(50)` sesuai tabel rancangan pada modul (kode SQL di modul menulis 30).
-- File `style.css` dibuat karena dipanggil oleh modul tetapi tidak disediakan.
-- `koneksi.php`: ditambahkan `mysqli_report(MYSQLI_REPORT_OFF)` agar pengecekan koneksi berfungsi pada PHP 8.1 ke atas.
-
 ## Kesimpulan
 
 Praktikum ini menghasilkan aplikasi CRUD sederhana dengan PHP dan MySQL (MariaDB) untuk mengelola data barang. Koneksi database dibuat dengan `mysqli_connect()`, data dibaca dengan `SELECT`, ditambah dengan `INSERT`, diubah dengan `UPDATE`, dan dihapus dengan `DELETE`. Semua operasi telah diuji dan berjalan sesuai yang diharapkan.
